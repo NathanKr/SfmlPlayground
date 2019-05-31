@@ -26,11 +26,17 @@ namespace ConsoleIntroduction
                 float fps = 1 / gameLoop.GameTime.DeltaTime;
                 string strFps = fps.ToString();
 
-                Text text = new Text(strTotalTimeElapsed, consoleFont,14);
-                text.Position = new Vector2f(4, 8);
-                text.FillColor = fontColor;
+                Text textElapsed = new Text(strTotalTimeElapsed, consoleFont,14);
+                textElapsed.Position = new Vector2f(4, 8);
+                textElapsed.FillColor = fontColor;
 
-                gameLoop.Window.Draw(text);
+                gameLoop.Window.Draw(textElapsed);
+
+                Text textFps = new Text(strFps, consoleFont, 14);
+                textFps.Position = new Vector2f(4, 28);
+                textFps.FillColor = fontColor;
+
+                gameLoop.Window.Draw(textFps);
             }
         }
 
