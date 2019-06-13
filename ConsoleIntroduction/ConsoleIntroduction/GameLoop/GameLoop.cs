@@ -38,7 +38,7 @@ namespace ConsoleIntroduction
                 if(totalTimeBeforeUpdate >= TIME_UNTIL_UPDATE)
                 {
                     // i think this is correct GameTime.Update(deltaTime, totalTimeElapsed);
-                    //thats what he did but first arg is deltatime 
+                    // thats what he did but first arg is deltatime 
                     GameTime.Update(totalTimeBeforeUpdate, totalTimeElapsed);
                     totalTimeBeforeUpdate = 0;
 
