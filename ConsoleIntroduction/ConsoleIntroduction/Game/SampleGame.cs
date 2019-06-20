@@ -5,20 +5,21 @@ namespace ConsoleIntroduction
 {
     class SampleGame : GameLoop
     {
-        public const uint DEFAULT_WINDOW_WIDTH = 640;
-        public const uint DEFAULT_WINDOW_HEIGHT = 480;
+        public const uint DEFAULT_WINDOW_WIDTH = 480;
+        public const uint DEFAULT_WINDOW_HEIGHT = 640;
+        Shapes shapes;
 
         public SampleGame() : base(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT, 
             "Sample SFML Game",Color.Black)
         {
-
+            shapes = new Shapes();
         }
 
         public override void Draw(GameTime gameTime)
         {
             /* --- this does not look optimal because the shape is created 
              * --- on every render but the frequency is still almost 60hz */
-            DebugUtility.Draw(this);
+            shapes.Draw(this);
         }
 
         public override void Initialize()
@@ -29,39 +30,40 @@ namespace ConsoleIntroduction
 
         private void Window_MouseButtonPressed(object sender, MouseButtonEventArgs e)
         {
-            DebugUtility.circleX = e.X;
-            DebugUtility.circleY = e.Y;
+            shapes.positions.CircleCenter.X = e.X - shapes.positions.CircleRadius;
+            shapes.positions.CircleCenter.Y = e.Y - shapes.positions.CircleRadius;
+            shapes.positions.Up = !shapes.positions.Up;
         }
 
-        private void Window_KeyPressed(object sender, SFML.Window.KeyEventArgs e)
+        private void Window_KeyPressed(object sender, KeyEventArgs e)
         {
             switch (e.Code)
             {
                 case Keyboard.Key.Up:
-                    if(DebugUtility.fpsY > 0)
+                    if(shapes.positions.Fps.Y > 0)
                     {
-                        DebugUtility.fpsY--;
+                        shapes.positions.Fps.Y--;
                     }
                     break;
 
                 case Keyboard.Key.Down:
-                    if (DebugUtility.fpsY < DEFAULT_WINDOW_HEIGHT)
+                    if (shapes.positions.Fps.Y < DEFAULT_WINDOW_HEIGHT)
                     {
-                        DebugUtility.fpsY++;
+                        shapes.positions.Fps.Y++;
                     }
                     break;
 
                 case Keyboard.Key.Left:
-                    if (DebugUtility.fpsX > 0)
+                    if (shapes.positions.Fps.X > 0)
                     {
-                        DebugUtility.fpsX--;
+                        shapes.positions.Fps.X--;
                     }
                     break;
 
                 case Keyboard.Key.Right:
-                    if (DebugUtility.fpsX < DEFAULT_WINDOW_WIDTH)
+                    if (shapes.positions.Fps.X < DEFAULT_WINDOW_WIDTH)
                     {
-                        DebugUtility.fpsX++;
+                        shapes.positions.Fps.X++;
                     }
                     break;
             }
@@ -69,14 +71,13 @@ namespace ConsoleIntroduction
 
         public override void LoadContent()
         {
-            DebugUtility.LoadContent();
+            shapes.LoadContent();
         }
-
 
 
         public override void Update(GameTime gameTime)
         {
-           // DebugUtility.sprite.tra
+            shapes.Update();
         }
     }
 }

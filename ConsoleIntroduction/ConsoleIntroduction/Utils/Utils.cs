@@ -35,5 +35,6 @@ namespace ConsoleIntroduction
             sprite.Position = new Vector2f(x, y);
             gameLoop.Window.Draw(sprite);
         }
+
     }
 }

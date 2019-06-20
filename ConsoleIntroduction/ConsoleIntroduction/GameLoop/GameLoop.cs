@@ -42,6 +42,7 @@ namespace ConsoleIntroduction
                     GameTime.Update(totalTimeBeforeUpdate, totalTimeElapsed);
                     totalTimeBeforeUpdate = 0;
 
+                    // --- seems that you do here pure logic
                     Update(GameTime);
 
                     // --- sfml issue -> you must call clear before render
@@ -64,7 +65,7 @@ namespace ConsoleIntroduction
             string windowTitle , Color windowClearColor)
         {
             this.WindowClearColor = windowClearColor;
-            Window = new RenderWindow(new VideoMode(windowHeight, windowWidth),windowTitle);
+            Window = new RenderWindow(new VideoMode(windowWidth , windowHeight),windowTitle);
             GameTime = new GameTime();
             Window.Closed += WindowClosed;
         }
